@@ -1,0 +1,91 @@
+﻿<Controls:MetroWindow x:Class="DecisionAssistant.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DecisionAssistant"
+        xmlns:views="clr-namespace:DecisionAssistant.View"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:vm="clr-namespace:DecisionAssistant.ViewModel"
+        mc:Ignorable="d"
+        Title="Decision Assistant" Height="600" Width="800"
+        BorderThickness="0" 
+        GlowBrush="Black"
+        ResizeMode="CanMinimize"
+        WindowTransitionsEnabled="True"
+        WindowStartupLocation="CenterScreen"
+        ShowIconOnTitleBar="True"        
+        >
+    <Controls:MetroWindow.DataContext>
+        <vm:MainWindowViewModel/>
+    </Controls:MetroWindow.DataContext>
+    
+    <Controls:MetroWindow.Resources>
+        <DataTemplate DataType="{x:Type views:MenuUC}">
+            <views:MenuUC/>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type views:CreateModelUC}">
+            <views:MenuUC/>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type views:EnterDataUC}">
+            <views:MenuUC/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type views:ResultUC}">
+            <views:MenuUC/>
+        </DataTemplate>
+
+
+        <DataTemplate DataType="{x:Type views:SettingsUC}">
+            <views:MenuUC/>
+        </DataTemplate>
+
+    </Controls:MetroWindow.Resources>
+    
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20" Height="20" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cog}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                   VerticalAlignment="Center"
+                   Text="Language" />
+                </StackPanel>
+            </Button>
+            <Button>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20" Height="20" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_book}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                   VerticalAlignment="Center"
+                   Text="Language" />
+                </StackPanel>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
+
+    <!--<Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Img/business-networking.jpg" />
+        </Grid.Background>
+    </Grid>-->
+    <DockPanel LastChildFill="True">
+        <DockPanel.Background>
+            <ImageBrush ImageSource="/Assets/Img/business-networking.jpg" />
+        </DockPanel.Background>
+        <StackPanel x:Name="navigation" DockPanel.Dock="Bottom">
+            <Button Content="Button1"/>
+        </StackPanel>
+        <Frame x:Name="Pages" DockPanel.Dock="Top" Source="{Binding FrameSource, Mode=TwoWay}"/>
+    </DockPanel>
+</Controls:MetroWindow>
